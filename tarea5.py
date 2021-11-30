@@ -78,7 +78,7 @@ def main():
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
     pygame.display.set_caption("Pong 2")
     pelota = PelotaPong("bola_roja.png")
-    
+
     # Creacion de las raquetas ya que  esta creada su clase, creando dos variables, modificando sus caracteristicas
     raqueta_1 = RaquetaPong()
     raqueta_1.x = 60
@@ -90,8 +90,12 @@ def main():
     while jugando:
         pelota.mover()
         pelota.rebotar()
+        
+        # Dibujar raquetas
         ventana.fill(BLANCO)
         ventana.blit(pelota.imagen, (pelota.x, pelota.y))
+        ventana.blit(raqueta_1.imagen, (raqueta_1.x, raqueta_1.y))
+        ventana.blit(raqueta_2.imagen, (raqueta_2.x, raqueta_2.y))
 
         for event in pygame.event.get():
             if event.type == QUIT:
