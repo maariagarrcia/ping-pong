@@ -80,6 +80,12 @@ def main():
     pygame.display.set_caption("Pong 2")
 
     pelota = PelotaPong("bola_roja.png")
+    
+    raqueta_1 = RaquetaPong()
+    raqueta_1.x = 60
+
+    raqueta_2 = RaquetaPong()
+    raqueta_2.x = VENTANA_HORI - 60 - raqueta_2.ancho
 
     jugando = True
     while jugando:
