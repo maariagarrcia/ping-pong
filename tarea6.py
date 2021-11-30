@@ -89,17 +89,17 @@ def main():
                 jugando = False
 
         #Se detecta la pulsación de una tecla
-        if event.type == pygame.KEYDOWN:
-            if event.key== pygame.K_w:
-                raqueta_1.dir_y = -5
-            if event.key == pygame.K_s:
-                raqueta_1.dir_y = 5
+            if event.type == pygame.KEYDOWN:
+                if event.key== pygame.K_w:
+                    raqueta_1.dir_y = -5
+                if event.key == pygame.K_s:
+                    raqueta_1.dir_y = 5
         #Se detecta que la tecla ha sido soltada
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_w:
-                raqueta_1.dir_y = 0
-            if event.key == pygame.K_s:
-                raqueta_1.dir_y = 0
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_w:
+                    raqueta_1.dir_y = 0
+                if event.key == pygame.K_s:
+                    raqueta_1.dir_y = 0
 
         pygame.display.flip()
         pygame.time.Clock().tick(FPS)
