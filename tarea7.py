@@ -98,6 +98,7 @@ def main():
         pelota.mover()
         pelota.rebotar()
         raqueta_1.mover()
+        raqueta_1.golpear(pelota)
         # Dibujar raquetas
         ventana.fill(BLANCO)
         ventana.blit(pelota.imagen, (pelota.x, pelota.y))
