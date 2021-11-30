@@ -14,3 +14,16 @@ def main():
     pygame.init()
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
     pygame.display.set_caption("Pong 1")
+#1.3 - Creamos el bucle principal del código
+    jugando = True
+    while jugando:
+        ventana.fill(BLANCO)
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                jugando = False
+        pygame.display.flip()
+        pygame.time.Clock().tick(FPS)
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
