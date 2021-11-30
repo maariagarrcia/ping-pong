@@ -79,7 +79,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+# a continuación queremos crear una función para hacer que nuestra pelota rebote
 def rebotar (self):
     if self.x <= 0:
         self.dir_x = - self.dir_x
@@ -89,3 +89,5 @@ def rebotar (self):
         self.dir_y = - self.dir_y
     if self.y + self.alto >= VENTANA_VERT:
         self.dir_y = - self.dir_y
+#comprobamos que la función fundiona
+PelotaPong.rebotar()
