@@ -8,4 +8,4 @@ Aunque desde la aparición de los ordenadores programables en los años 40 del s
 
 Bastante años después, en septiembre de 1972, se comercializó la primera videoconsola de la historia dirigida a los hogares, Magnavox Odyssey. Esta videoconsola se conectaba a una pantalla de televisor y uno de los juegos incluidos era Table Tennis. En este juego cada jugador controlaba una paleta que golpeaba una pelota. El mismo año, pero en noviembre, la compañía Atari comercializó Pong, una de las primeras máquinas de arcade, destinadas a lugares públicos.
 
-Para poder realizar nuestro trabajo hemos creado un repositorio compartido en el cual a través de
+Para poder realizar nuestro trabajo hemos creado un repositorio compartido en el cual a través de Milestones e Issues nos hemos organizado el trabajo, de modo que cada una debía realizar 3 de las 9 tareas que permitían elaborar nuestro código. (Adjunto URL del repositorio:
