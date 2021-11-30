@@ -32,15 +32,16 @@ class PelotaPong:
         self.y += self.dir_y
 
 # a continuación queremos crear una función para hacer que nuestra pelota rebote
-    def rebotar (self):
-        if self.x <= 0:
-            self.dir_x = - self.dir_x
-        if self.x + self.ancho >= VENTANA_HORI:
-            self.dir_x = - self.dir_x
+# nuestra función rebotar detecta que si la pelota sale por la izq o derecha, se inicia una nueva jugada
+    def rebotar(self):
+        if self.x <= -self.ancho:
+            self.reiniciar()
+        if self.x >= VENTANA_HORI:
+            self.reiniciar()
         if self.y <= 0:
-            self.dir_y = - self.dir_y
+            self.dir_y = -self.dir_y
         if self.y + self.alto >= VENTANA_VERT:
-            self.dir_y = - self.dir_y
+            self.dir_y = -self.dir_y
 
 # añadimos una función para poder reiniciar la jugada
     def reiniciar(self):
