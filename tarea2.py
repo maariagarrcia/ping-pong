@@ -2,12 +2,33 @@ import random
 import pygame
 from pygame.locals import QUIT
 
-# Constantes para la inicialización de la superficie de dibujo
-VENTANA_HORI = 800  # Ancho de la ventana
-VENTANA_VERT = 600  # Alto de la ventana
-FPS = 60  # Fotogramas por segundo
-BLANCO = (255, 255, 255)  # Color del fondo de la ventana (RGB)
 
+#Inicializamos pygame y definimos las constantes
+
+VENTANA_HORI = 800  
+VENTANA_VERT = 600  
+FPS = 60
+BLANCO = (255, 255, 255)  
+
+def main():
+    pygame.init()
+    ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
+    pygame.display.set_caption("Pong 1")
+
+#1.3 - Creamos el bucle principal del código
+    jugando = True
+    while jugando:
+        ventana.fill(BLANCO)
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                jugando = False
+        pygame.display.flip()
+        pygame.time.Clock().tick(FPS)
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
+    
 # Definimos la clase pelota y dentro sus características
 class PelotaPong:
     def __init__(self, fichero_imagen):
@@ -29,3 +50,13 @@ class PelotaPong:
     def mover(self):
         self.x += self.dir_x
         self.y += self.dir_y
+
+def main():
+    # Inicialización de Pygame
+    pygame.init()
+
+    # Inicialización de la superficie de dibujo (display surface)
+    ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
+    pygame.display.set_caption("Pong 2")
+
+    pelota = PelotaPong("bola_roja.png")
