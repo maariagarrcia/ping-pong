@@ -77,8 +77,14 @@ def main():
     # Inicialización de la superficie de dibujo (display surface)
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
     pygame.display.set_caption("Pong 2")
-
     pelota = PelotaPong("bola_roja.png")
+    
+    # Creacion de las raquetas ya que  esta creada su clase, creando dos variables, modificando sus caracteristicas
+    raqueta_1 = RaquetaPong()
+    raqueta_1.x = 60
+
+    raqueta_2 = RaquetaPong()
+    raqueta_2.x = VENTANA_HORI - 60 - raqueta_2.ancho
 
     jugando = True
     while jugando:
