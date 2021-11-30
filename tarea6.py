@@ -6,6 +6,7 @@ VENTANA_HORI = 800
 VENTANA_VERT = 600  
 FPS = 60
 BLANCO = (255, 255, 255)  
+NEGRO = (0,0,0) 
 # Definimos la clase pelota y dentro sus características
 class PelotaPong:
     def __init__(self, fichero_imagen):
@@ -71,6 +72,8 @@ def main():
     # Inicialización de la superficie de dibujo (display surface)
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
     pygame.display.set_caption("Pong 2")
+    #Iniciación de la fuente
+    
     pelota = PelotaPong("bola_roja.png")
     
 
