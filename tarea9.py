@@ -1,4 +1,5 @@
 import random
+from typing import Text
 import pygame
 from pygame.locals import QUIT
 
@@ -7,7 +8,7 @@ VENTANA_HORI = 800
 VENTANA_VERT = 600  
 FPS = 60
 BLANCO = (255, 255, 255)  
-
+NEGRO = (0,0,0)
 # Definimos la clase pelota y dentro sus características
 class PelotaPong:
     def __init__(self, fichero_imagen):
@@ -110,6 +111,8 @@ def main():
     # Inicialización de la superficie de dibujo (display surface)
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
     pygame.display.set_caption("Pong 2")
+    # Iniciación de la fuente 
+    fuente = pygame.font.Font(None, 60)
     pelota = PelotaPong("bola_roja.png")
     
     # Creacion de las raquetas ya que  esta creada su clase, creando dos variables, modificando sus caracteristicas
@@ -117,7 +120,7 @@ def main():
     raqueta_1.x = 60
     raqueta_2 = RaquetaPong()
     raqueta_2.x = VENTANA_HORI - 60 - raqueta_2.ancho
-
+#BP
     jugando = True
     while jugando:
         pelota.mover()
@@ -131,7 +134,9 @@ def main():
         ventana.blit(pelota.imagen, (pelota.x, pelota.y))
         ventana.blit(raqueta_1.imagen, (raqueta_1.x, raqueta_1.y))
         ventana.blit(raqueta_2.imagen, (raqueta_2.x, raqueta_2.y))
-
+        Text = f"{pelota.puntuacion} : {pelota.puntuacion_ia}"
+        letrero = fuente.render(Text, False, NEGRO)
+        ventana.blit(letrero, (VENTANA_HORI/ 2 - fuente.size(Text)[0]/ 2,50))
         for event in pygame.event.get():
             if event.type == QUIT:
                 jugando = False
