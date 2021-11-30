@@ -2,6 +2,7 @@ import random
 import pygame
 from pygame.locals import QUIT
 
+
 #Inicializamos pygame y definimos las constantes
 
 VENTANA_HORI = 800  
@@ -9,21 +10,40 @@ VENTANA_VERT = 600
 FPS = 60
 BLANCO = (255, 255, 255)  
 
+def main():
+    pygame.init()
+    ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
+    pygame.display.set_caption("Pong 1")
+
+#1.3 - Creamos el bucle principal del código
+    jugando = True
+    while jugando:
+        ventana.fill(BLANCO)
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                jugando = False
+        pygame.display.flip()
+        pygame.time.Clock().tick(FPS)
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
+
 # Definimos la clase pelota y dentro sus características
 class PelotaPong:
     def __init__(self, fichero_imagen):
-        # ---- C A R A C T E R I S T I C A S
-        # La imagen
+        # Características de la pelota 
+        # La imagen de la clase pelota
         self.imagen = pygame.image.load(fichero_imagen).convert_alpha()
 
-        # Dimensiones
+        # Dimensiones de la Pelota
         self.ancho, self.alto = self.imagen.get_size()
 
-        # Posición 
+        # Posición de la Pelota
         self.x = VENTANA_HORI / 2 - self.ancho / 2
         self.y = VENTANA_VERT / 2 - self.alto / 2
 
-        # Dirección de movimiento 
+        # Dirección de movimiento de la Pelota
         self.dir_x = random.choice([-5, 5])
         self.dir_y = random.choice([-5, 5])
 
@@ -31,43 +51,34 @@ class PelotaPong:
         self.x += self.dir_x
         self.y += self.dir_y
 
-# a continuación queremos crear una función para hacer que nuestra pelota rebote
-# nuestra función rebotar detecta que si la pelota sale por la izq o derecha, se inicia una nueva jugada
-    def rebotar(self):
-        if self.x <= -self.ancho:
-            self.reiniciar()
-        if self.x >= VENTANA_HORI:
-            self.reiniciar()
-        if self.y <= 0:
-            self.dir_y = -self.dir_y
-        if self.y + self.alto >= VENTANA_VERT:
-            self.dir_y = -self.dir_y
 
-# añadimos una función para poder reiniciar la jugada
-    def reiniciar(self):
-        self.x = VENTANA_HORI / 2 - self.ancho / 2
-        self.y = VENTANA_VERT / 2 - self.alto / 2
-        self.dir_x = -self.dir_x
-        self.dir_y = random.choice([-5, 5])
-
-# Añadimos las clase raqueta que es muy parecida al de la pelota y incluimos tambien sus caracteristicas       
 class RaquetaPong:
     def __init__(self):
         self.imagen = pygame.image.load("raqueta.png").convert_alpha()
 
-        #---- C A R A C T E R I S T I C A S
+        # --- Atributos de la Clase ---
 
-        # Dimensiones
+        # Dimensiones de la Raqueta
         self.ancho, self.alto = self.imagen.get_size()
 
-        # Posición
+        # Posición de la Raqueta
         self.x = 0
         self.y = VENTANA_VERT / 2 - self.alto / 2
 
-        # Dirección de movimiento
+        # Dirección de movimiento de la Raqueta
         self.dir_y = 0
 
     def mover(self):
+        self.y += self.dir_y
+
+    def mover_ia(self, pelota):
+        if self.y > pelota.y:
+            self.dir_y = -3
+        elif self.y < pelota.y:
+            self.dir_y = 3
+        else:
+            self.dir_y = 0
+
         self.y += self.dir_y
 
 def main():
@@ -77,9 +88,9 @@ def main():
     # Inicialización de la superficie de dibujo (display surface)
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
     pygame.display.set_caption("Pong 2")
+
     pelota = PelotaPong("bola_roja.png")
 
-    # Creacion de las raquetas ya que  esta creada su clase, creando dos variables, modificando sus caracteristicas
     raqueta_1 = RaquetaPong()
     raqueta_1.x = 60
 
@@ -89,9 +100,7 @@ def main():
     jugando = True
     while jugando:
         pelota.mover()
-        pelota.rebotar()
-        
-        # Dibujar raquetas
+
         ventana.fill(BLANCO)
         ventana.blit(pelota.imagen, (pelota.x, pelota.y))
         ventana.blit(raqueta_1.imagen, (raqueta_1.x, raqueta_1.y))
@@ -108,5 +117,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 

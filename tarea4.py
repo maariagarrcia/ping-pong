@@ -12,18 +12,18 @@ BLANCO = (255, 255, 255)
 # Definimos la clase pelota y dentro sus características
 class PelotaPong:
     def __init__(self, fichero_imagen):
-        # ---- C A R A C T E R I S T I C A S
-        # La imagen
+        # Características de la pelota 
+        # La imagen de la clase pelota
         self.imagen = pygame.image.load(fichero_imagen).convert_alpha()
 
-        # Dimensiones
+        # Dimensiones de la Pelota
         self.ancho, self.alto = self.imagen.get_size()
 
-        # Posición 
+        # Posición de la Pelota
         self.x = VENTANA_HORI / 2 - self.ancho / 2
         self.y = VENTANA_VERT / 2 - self.alto / 2
 
-        # Dirección de movimiento 
+        # Dirección de movimiento de la Pelota
         self.dir_x = random.choice([-5, 5])
         self.dir_y = random.choice([-5, 5])
 
@@ -50,26 +50,6 @@ class PelotaPong:
         self.dir_x = -self.dir_x
         self.dir_y = random.choice([-5, 5])
 
-# Añadimos las clase raqueta que es muy parecida al de la pelota y incluimos tambien sus caracteristicas       
-class RaquetaPong:
-    def __init__(self):
-        self.imagen = pygame.image.load("raqueta.png").convert_alpha()
-
-        #---- C A R A C T E R I S T I C A S
-
-        # Dimensiones
-        self.ancho, self.alto = self.imagen.get_size()
-
-        # Posición
-        self.x = 0
-        self.y = VENTANA_VERT / 2 - self.alto / 2
-
-        # Dirección de movimiento
-        self.dir_y = 0
-
-    def mover(self):
-        self.y += self.dir_y
-
 def main():
     # Inicialización de Pygame
     pygame.init()
@@ -77,25 +57,15 @@ def main():
     # Inicialización de la superficie de dibujo (display surface)
     ventana = pygame.display.set_mode((VENTANA_HORI, VENTANA_VERT))
     pygame.display.set_caption("Pong 2")
+
     pelota = PelotaPong("bola_roja.png")
-
-    # Creacion de las raquetas ya que  esta creada su clase, creando dos variables, modificando sus caracteristicas
-    raqueta_1 = RaquetaPong()
-    raqueta_1.x = 60
-
-    raqueta_2 = RaquetaPong()
-    raqueta_2.x = VENTANA_HORI - 60 - raqueta_2.ancho
 
     jugando = True
     while jugando:
         pelota.mover()
         pelota.rebotar()
-        
-        # Dibujar raquetas
         ventana.fill(BLANCO)
         ventana.blit(pelota.imagen, (pelota.x, pelota.y))
-        ventana.blit(raqueta_1.imagen, (raqueta_1.x, raqueta_1.y))
-        ventana.blit(raqueta_2.imagen, (raqueta_2.x, raqueta_2.y))
 
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -108,5 +78,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
