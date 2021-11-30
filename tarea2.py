@@ -28,7 +28,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+
 # Definimos la clase pelota y dentro sus características
 class PelotaPong:
     def __init__(self, fichero_imagen):
@@ -60,3 +60,19 @@ def main():
     pygame.display.set_caption("Pong 2")
 
     pelota = PelotaPong("bola_roja.png")
+
+    jugando = True
+    while jugando:
+        pelota.mover()
+
+        ventana.fill(BLANCO)
+        ventana.blit(pelota.imagen, (pelota.x, pelota.y))
+
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                jugando = False
+
+        pygame.display.flip()
+        pygame.time.Clock().tick(FPS)
+
+    pygame.quit()
