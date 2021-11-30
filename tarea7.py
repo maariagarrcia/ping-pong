@@ -58,24 +58,13 @@ class RaquetaPong:
         self.y = VENTANA_VERT / 2 - self.alto / 2
         # Dirección de movimiento
         self.dir_y = 0
-    
+
     def mover(self):
        self.y += self.dir_y
        if self.y <= 0: 
            self.y = 0
        if self.y + self.alto >= VENTANA_VERT:
            self.y = VENTANA_VERT - self.alto
-
-    # Mover la raqueta con una estrategia definida  
-    def mover_ia(self, pelota):
-        if self.y > pelota.y:
-            self.dir_y = -3
-        elif self.y < pelota.y:
-            self.dir_y = 3
-        else:
-            self.dir_y = 0
-
-        self.y += self.dir_y
 
 #creamos una función que permita golpear la pelota
     def golpear(self, pelota):
@@ -87,17 +76,7 @@ class RaquetaPong:
         ):
             pelota.dir_x = -pelota.dir_x
             pelota.x = self.x + self.ancho
-    
-    #Metodo similar al de golpear del humano pero con la inteligencia artificial
-    def golpear_ia(self, pelota):
-        if (
-            pelota.x + pelota.ancho > self.x
-            and pelota.x < self.x + self.ancho
-            and pelota.y + pelota.alto > self.y
-            and pelota.y < self.y + self.alto
-        ):
-            pelota.dir_x = -pelota.dir_x
-            pelota.x = self.x - pelota.ancho
+
 
 def main():
     # Inicialización de Pygame
@@ -119,9 +98,7 @@ def main():
         pelota.mover()
         pelota.rebotar()
         raqueta_1.mover()
-        raqueta_2.mover_ia(pelota)
         raqueta_1.golpear(pelota)
-        raqueta_2.golpear_ia(pelota)
         # Dibujar raquetas
         ventana.fill(BLANCO)
         ventana.blit(pelota.imagen, (pelota.x, pelota.y))
